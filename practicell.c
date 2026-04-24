@@ -24,7 +24,7 @@ main(void)
 
 	struct Node *current = head;
 
-	while(current != NULL) {
+	while (current != NULL) {
 		printf("%d ", current->val);
 		current = current->next;
 	}
@@ -34,7 +34,7 @@ main(void)
 	struct Node *tmp;
 	current = head;
 
-	while(current != NULL) {
+	while (current != NULL) {
 		tmp = current->next;
 		free(current);
 		current = tmp;
