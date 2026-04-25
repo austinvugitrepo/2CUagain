@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct Node *headi(struct Node *, int);
+#include <err.h>
 
 struct Node {
 	struct Node *pos;
@@ -9,18 +8,20 @@ struct Node {
 
 };
 
-/* more practice for inserting nodes at head position */ 
+void headi(struct Node **, int);
+
+/* more practice for inserting nodes at head position. */ 
 
 int
 main(void)
 {
 	struct Node *head = NULL;
-	head = headi(head, 3);
+	headi(&head, 3);
 
 	printf("%d\n", head->val);
 
-	head = headi(head, 2);
-	head = headi(head, 1);
+	headi(&head, 2);
+	headi(&head, 1);
 
 	struct Node *cur = head;
 	while (cur != NULL) {
@@ -43,14 +44,15 @@ main(void)
 
 }
 
-/* function for inserting nodes at head position */ 
+/* function for inserting nodes at head position. */ 
 
-struct Node *headi(struct Node *ptr, int v)
+void headi(struct Node **ptr, int v)
 {
-	struct Node *hptr = malloc(sizeof(struct Node));
-	hptr->val = v;
-	hptr->pos = ptr;
+	struct Node *n;
 
-	return hptr;
-
+	if ((n = malloc(sizeof(struct Node))) == NULL)
+		err(1, NULL);
+	n->val = v;
+	n->pos = *ptr;
+	*ptr = n;
 }
