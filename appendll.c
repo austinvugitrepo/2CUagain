@@ -15,14 +15,36 @@ int
 main(void)
 {
 	struct Node *head = NULL;
+	
 	appendNode(&head, 1);
-	printf("%d", head->val);
+	appendNode(&head, 2);
+	appendNode(&head, 3);
+	
+	struct Node *cur;
+	cur = head;
+
+	while (cur != NULL) {
+		printf("%d ",cur->val);
+		cur = cur->pos;
+	}
+
 	putchar('\n');
-	free(head);	
+
+	struct Node *tmp;
+	cur = head;
+	
+	while (cur != NULL) {
+		tmp = cur->pos;
+		free(cur);
+		cur = tmp;
+	}
+	
 	return 0;
 
 }
 
+/* This function appends nodes to the end. */
+ 
 void
 appendNode(struct Node **ptr, int v)
 {
@@ -40,4 +62,11 @@ appendNode(struct Node **ptr, int v)
 		*ptr = n;
 		return;
 	}
+	
+	struct Node *cur;
+	cur = *ptr;
+	/* travel to last node pointing to NULL and not be at NULL. */
+	while (cur->pos != NULL)
+		cur = cur->pos;
+	cur->pos = n; 
 }
