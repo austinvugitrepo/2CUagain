@@ -50,7 +50,7 @@ void
 hinsert(struct Node **ptr, int num)
 {
 	struct Node *h;
-	if((h = malloc(sizeof(struct Node))) == NULL)
+	if ((h = malloc(sizeof(struct Node))) == NULL)
 		err(1, NULL);
 	h->val = num;
 	h->pos = *ptr;
