@@ -18,7 +18,7 @@ main(void)
 	appendNode(&head, 1);
 	printf("%d", head->val);
 	putchar('\n');
-
+	free(head);	
 	return 0;
 
 }
